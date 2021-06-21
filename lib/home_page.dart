@@ -1,3 +1,6 @@
+import 'package:dart_pad_widget/dart_pad_widget.dart';
+import 'package:digital_garden/dartpad_code.dart';
+import 'package:digital_garden/pages/projects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -21,21 +24,22 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String _personalDescriptionHeader = '''
-  Software Engineer with skills stretching from Mobile app UI to backend data processing using hadoop
-
+  Software Engineer with a variety of skills ranging from mobile app development to backend data processing
   ''';
   String _personalDescriptionBody = '''
-  *  Fast Learner
-      -  Has learned multiple langauages and technologies on the job, including: Java, Clojure, Python, Scala, 
+  *  Adaptable
+      -  Learned multiple langauages and technologies on the job, including: Java, Clojure, Python, Scala, 
          Groovy, Kafka, Hadoop, Jenkins 2.0, Ansible and Consul
+      -  Facilitated Agile rituals and processes with team as Agile Scrum Master
 
-  *  Loves to build things away from work
-      -  Earned Android Developer Nanodegree from Udacity and with the Grow with Google Challenge Scholarship (2017-2018).
-      -  Fell in love with Flutter/Dart and has published two apps to the Google Play Store
+  *  Passionate
+      -  Earned Android Developer Nanodegree from Udacity through the Grow with Google Challenge Scholarship (2017-2018)
+      -  Fell in love with Flutter/Dart and published two apps to the Google Play Store
+      -  Participated in Brother Virtual Hackathon 2021. Created Flutter app to print product labels and scan QR codes (see YouTube)
   
-  *  An active presense in the developer community
-      -  Gave a presentation at local Flutter/Dart interest group about state management solutions
-      -  Written blog articles about general programming and Flutter concepts
+  *  Knowledge Sharing
+      -  Presented at local Flutter/Dart interest group about state management solutions
+      -  Contribute to the development community by writing blog articles about general programming and Flutter concepts
   ''';
 
   void _launchURL(String url) async =>
@@ -45,11 +49,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
+    bool condenseIcons = screenWidth < 1500;
 
     double widthDivider = screenWidth / 20;
     double heightDivider = screenWidth / 15;
     return Scaffold(
-      backgroundColor: Colors.blueGrey[800],
+      backgroundColor: Colors.blueGrey[300],
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -58,28 +63,32 @@ class _HomePageState extends State<HomePage> {
             ),
             Text(
               "Carl Wills",
-              style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 56, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: heightDivider / 20,
+            ),
+            Text(
+              "Senior Software Engineer",
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 250),
+              child: Divider(
+                color: Colors.white70,
+                thickness: 4,
+              ),
             ),
             SizedBox(
               height: heightDivider,
             ),
-            ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
+            Container(
+                decoration: BoxDecoration(
+                    border: Border.all(width: 4, color: Colors.white70),
+                    borderRadius: BorderRadius.circular(4.0)),
                 child: Image.asset(
                   'assets/images/carl_photo.jpg',
                   scale: 6,
-                )),
-            SizedBox(
-              height: heightDivider,
-            ),
-            Text(_personalDescriptionHeader,
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
-            SizedBox(
-              height: heightDivider / 5,
-            ),
-            Text(_personalDescriptionBody,
-                style: TextStyle(
-                  fontSize: 20,
                 )),
             SizedBox(
               height: heightDivider,
@@ -89,26 +98,90 @@ class _HomePageState extends State<HomePage> {
               height: heightDivider / 10,
             ),
             Row(
+              key: Key("iconRow"),
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 _customSignInButton(
+                    "GitHub\n(for this site)",
+                    FontAwesomeIcons.github,
+                    'https://github.com/carlMobileDev/mobile_garden',
+                    Colors.black,
+                    widthDivider,
+                    condenseIcons),
+                _customSignInButton(
+                    "GitHub",
                     FontAwesomeIcons.github,
                     'https://github.com/carlMobileDev',
                     Colors.black,
-                    widthDivider),
+                    widthDivider,
+                    condenseIcons),
                 _customSignInButton(
+                    "YouTube",
                     FontAwesomeIcons.youtube,
                     'https://www.youtube.com/channel/UCBoRv9tiB9dTJvf7ugnYrBA',
                     Colors.red,
-                    widthDivider),
-                _customSignInButton(FontAwesomeIcons.dev,
-                    'https://dev.to/carlmobiledev', Colors.black, widthDivider),
+                    widthDivider,
+                    condenseIcons),
                 _customSignInButton(
+                    "Dev.To",
+                    FontAwesomeIcons.dev,
+                    'https://dev.to/carlmobiledev',
+                    Colors.black,
+                    widthDivider,
+                    condenseIcons),
+                _customSignInButton(
+                    "Google Play Store",
                     FontAwesomeIcons.googlePlay,
                     'https://play.google.com/store/apps/developer?id=Carl.Mobile.Dev',
                     Colors.black,
-                    widthDivider),
+                    widthDivider,
+                    condenseIcons),
+                _customSignInButton(
+                    "LinkedIn",
+                    FontAwesomeIcons.linkedin,
+                    'www.linkedin.com/in/carl-wills',
+                    Colors.blue[700]!,
+                    widthDivider,
+                    condenseIcons)
               ],
+            ),
+            SizedBox(
+              height: heightDivider,
+            ),
+            Container(
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white70, width: 4),
+                    borderRadius: BorderRadius.circular(4)),
+                child: Column(children: [
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(_personalDescriptionHeader,
+                        style: TextStyle(
+                            fontSize: 28, fontWeight: FontWeight.bold)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(_personalDescriptionBody,
+                        style: TextStyle(
+                          fontSize: 20,
+                        )),
+                  ),
+                ])),
+            SizedBox(
+              height: heightDivider,
+            ),
+            Text(
+                "Play around with Flutter/Dart while you're here! Click run to see what I wrote!"),
+            SizedBox(
+              height: heightDivider / 10,
+            ),
+            DartPad(
+              width: screenWidth / 1.25,
+              flutter: true,
+              darkMode: true,
+              split: true,
+              code: dartpadCode,
+              key: Key('dartPad'),
             ),
             SizedBox(
               height: heightDivider,
@@ -119,19 +192,20 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _customSignInButton(
-      IconData icon, String url, Color backgroundColor, double widthDivider) {
+  Widget _customSignInButton(String label, IconData icon, String url,
+      Color backgroundColor, double widthDivider, bool condenseIcons) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: widthDivider / 2),
       child: SignInButtonBuilder(
-          width: 50,
           height: 50,
-          mini: true,
+          width: condenseIcons ? 50 : 157,
           icon: icon,
+          mini: condenseIcons,
+          textColor: Colors.white,
           onPressed: () {
             _launchURL(url);
           },
-          text: '',
+          text: label,
           backgroundColor: backgroundColor),
     );
   }

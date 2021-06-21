@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'home_page.dart';
 
@@ -12,9 +13,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Carl Wills - Portfolio',
       theme: ThemeData(
-        brightness: Brightness.dark,
-        primarySwatch: Colors.blueGrey,
-      ),
+          brightness: Brightness.light,
+          primarySwatch: Colors.blueGrey,
+          fontFamily: GoogleFonts.ubuntuCondensed().fontFamily),
       home: HomePage(title: 'My Digital Garden'),
     );
   }
