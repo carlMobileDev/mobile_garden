@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 void main() => runApp(
   MaterialApp(
     theme: ThemeData(
-          brightness: Brightness.dark,
-          primarySwatch: Colors.blueGrey,),
+          brightness: Brightness.dark,),
     title: 'Carl Wills Mini Resume', 
     home: MyApp())
   );
@@ -15,11 +14,15 @@ class MyApp extends StatelessWidget {
 
   final List<ResumeItem> _allItems = [
     ResumeItem(
-        timeframe: "March - Present\\n2021",
+        timeframe: "September - Present\\n2021",
+        employer: "Uptech Studio",
+        description: "Senior Software Engineer"),
+    ResumeItem(
+        timeframe: "March - September\\n2021         2021",
         employer: "YouMeWho (Contract)",
         description: "Tech Lead"),
     ResumeItem(
-        timeframe: "December - Present\\n2020",
+        timeframe: "December - September\\n2020         2021",
         employer: "Surescripts",
         description: "Senior Software Engineer"),
     ResumeItem(
@@ -43,7 +46,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey[300],
         appBar: AppBar(
           title: Text("Carl Wills Mini Resume"),
         ),
@@ -56,7 +58,7 @@ class MyApp extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4.0),
-                    color: Colors.blueGrey),
+                    color: Colors.black),
                 child: ListTile(
                   leading: Text(currentResumeItem.timeframe),
                   title: Text(currentResumeItem.employer, style: TextStyle(fontWeight: FontWeight.bold)),
@@ -76,8 +78,8 @@ class ResumeItem {
   String description;
 
   ResumeItem(
-      {@required this.timeframe,
-       @required this.employer,
-       @required this.description});
+      {required this.timeframe,
+       required this.employer,
+       required this.description});
 }
 ''';

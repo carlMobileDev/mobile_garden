@@ -13,8 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Carl Wills - Portfolio',
       theme: ThemeData(
-          brightness: Brightness.light,
-          primarySwatch: Colors.blueGrey,
+          brightness: Brightness.dark,
           fontFamily: GoogleFonts.ubuntuCondensed().fontFamily),
       home: HomePage(title: 'My Digital Garden'),
     );

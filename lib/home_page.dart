@@ -2,7 +2,7 @@ import 'package:dart_pad_widget/dart_pad_widget.dart';
 import 'package:digital_garden/dartpad_code.dart';
 import 'package:digital_garden/pages/projects.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:sign_in_button/sign_in_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -116,13 +116,6 @@ class _HomePageState extends State<HomePage> {
                     widthDivider,
                     condenseIcons),
                 _customSignInButton(
-                    "YouTube",
-                    FontAwesomeIcons.youtube,
-                    'https://www.youtube.com/channel/UCBoRv9tiB9dTJvf7ugnYrBA',
-                    Colors.red,
-                    widthDivider,
-                    condenseIcons),
-                _customSignInButton(
                     "Dev.To",
                     FontAwesomeIcons.dev,
                     'https://dev.to/carlmobiledev',
@@ -139,7 +132,7 @@ class _HomePageState extends State<HomePage> {
                 _customSignInButton(
                     "LinkedIn",
                     FontAwesomeIcons.linkedin,
-                    'www.linkedin.com/in/carl-wills',
+                    'https://www.linkedin.com/in/carl-wills/',
                     Colors.blue[700]!,
                     widthDivider,
                     condenseIcons)
@@ -176,10 +169,10 @@ class _HomePageState extends State<HomePage> {
               height: heightDivider / 10,
             ),
             DartPad(
+              embeddingChoice: EmbeddingChoice.flutter,
               width: screenWidth / 1.25,
-              flutter: true,
               darkMode: true,
-              split: true,
+              split: 40,
               code: dartpadCode,
               key: Key('dartPad'),
             ),
